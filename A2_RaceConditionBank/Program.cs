@@ -12,13 +12,25 @@ class Program
         
         // Bankkonto mit Startwert 1000 EUR erstellen
         BankAccount account = new BankAccount(1000);
+        List<Thread> threads = new List<Thread> ();
+        for (int i = 0; i < 10; i ++)
+        {
+            Thread thread = new Thread(() => PerformBankOperations(account));
+            threads.Add(thread);
+            thread.Start();
+        }
         Console.WriteLine($"Startkontostand: {account.GetBalance()} EUR\n");
         
     }
     
     private static void PerformBankOperations(BankAccount account)
     {
-        
+        int amount = Convert.ToInt32(account);
+        account.Deposit(amount);
+
+        Thread.Sleep(500);
+
+        account.Withdraw(amount);
     }
 }
 
