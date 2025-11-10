@@ -13,7 +13,7 @@ class Program
         Console.WriteLine("==========================================\n");
 
        // TODO
-       List<Producer> producer = new List<Producer> ();
+        List<Producer> producer = new List<Producer> ();
         ConcurrentQueue<int> concurrentQueue = new ConcurrentQueue<int>(); 
         for (int i = 0; i < 5; i++)
         {
@@ -21,12 +21,17 @@ class Program
             producer.Add(p);
         }
 
+        Consumer consumer = new Consumer(concurrentQueue);
+
         Console.WriteLine("Producer und Consumer gestartet...\n");
 
         // Überwachung: Jede Sekunde Queue-Füllstand ausgeben und auf >50 prüfen
         
         // TODO
-
+        while(concurrentQueue.Count() < 50)
+        {
+            Thread.Sleep(1000);
+        }
 
         // Alle Producer stoppen
        
