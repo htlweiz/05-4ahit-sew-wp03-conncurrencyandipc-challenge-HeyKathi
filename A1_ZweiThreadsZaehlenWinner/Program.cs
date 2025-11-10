@@ -12,8 +12,8 @@ class Program
     {
         Console.WriteLine("Übung 1: Zwei Threads – Zählen & Winner");
         
-        Thread thread1 = new Thread(CountUpThreadA);
-        Thread thread2 = new Thread(CountDownThreadB);
+        Thread thread1 = new Thread(() => CountUpThreadA());
+        Thread thread2 = new Thread(() => CountDownThreadB());
 
         thread1.Start();
         thread2.Start();
@@ -21,6 +21,18 @@ class Program
         thread1.Join();
         thread2.Join();
 
+        if (threadACount < threadBCount)
+        {
+            Console.WriteLine("Thread B ist der Gewinner: " + threadBCount);
+        }
+        else if (threadACount > threadBCount)
+        {
+            Console.WriteLine("Thread A ist der Gewinner: " + threadACount);
+        }
+        else if (threadACount == threadBCount)
+        {
+            Console.WriteLine("Unentschieden");
+        }
     }
     
     private static void CountUpThreadA()
@@ -28,11 +40,12 @@ class Program
         for (int i = 1; i == 100; i++)
         {
             threadACount = 1;
+            Console.WriteLine("Thread A: " + threadACount);
             if (threadBCount == threadACount)
             {
                 break;
             }
-        Thread.Sleep(100);
+            Thread.Sleep(100);
         }
     }
     
@@ -41,6 +54,7 @@ class Program
         for (int i = 100; i == 1; i--)
         {
             threadBCount = 1;
+            Console.WriteLine("Thread B: " + threadACount);
             if (threadBCount == threadACount)
             {
                 break;
