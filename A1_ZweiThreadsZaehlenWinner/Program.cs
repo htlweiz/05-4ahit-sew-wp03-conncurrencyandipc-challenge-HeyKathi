@@ -5,13 +5,13 @@ namespace A1_ZweiThreadsZaehlenWinner;
 
 class Program
 {
-    
+
     public static void Main(string[] args)
     {
         Console.WriteLine("Übung 1: Zwei Threads – Zählen & Winner");
         
-        Thread thread1 = new Thread();
-        Thread thread2 = new Thread();
+        Thread thread1 = new Thread(CountUpThreadA);
+        Thread thread2 = new Thread(CountDownThreadB);
 
         thread1.Start();
         thread2.Start();
