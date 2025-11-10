@@ -24,7 +24,11 @@ public class Consumer
         while (!shouldStop)
         {
             // TODO
-            concurrentQueue.Dequeue();
+            foreach (int i in concurrentQueue)
+            {
+                Console.WriteLine(i);
+            }
+
             Thread.Sleep(250); // 250ms Takt
         }
     }
