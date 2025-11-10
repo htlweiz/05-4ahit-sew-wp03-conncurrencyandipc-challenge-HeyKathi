@@ -13,7 +13,13 @@ class Program
         Console.WriteLine("==========================================\n");
 
        // TODO
-       
+       List<Producer> producer = new List<Producer> ();
+        ConcurrentQueue<int> concurrentQueue = new ConcurrentQueue<int>(); 
+        for (int i = 0; i < 5; i++)
+        {
+            Producer p = new Producer(i, concurrentQueue);
+            producer.Add(p);
+        }
 
         Console.WriteLine("Producer und Consumer gestartet...\n");
 
