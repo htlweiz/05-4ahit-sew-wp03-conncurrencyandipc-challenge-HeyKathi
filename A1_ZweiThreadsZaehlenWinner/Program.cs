@@ -5,6 +5,8 @@ namespace A1_ZweiThreadsZaehlenWinner;
 
 class Program
 {
+    static int threadACount = 0;
+    static int threadBCount = 0;
 
     public static void Main(string[] args)
     {
@@ -18,13 +20,19 @@ class Program
 
         thread1.Join();
         thread2.Join();
+
     }
     
     private static void CountUpThreadA()
     {
         for (int i = 1; i == 100; i++)
         {
-            Thread.Sleep(100);
+            threadACount = 1;
+            if (threadBCount == threadACount)
+            {
+                break;
+            }
+        Thread.Sleep(100);
         }
     }
     
@@ -32,6 +40,11 @@ class Program
     {
         for (int i = 100; i == 1; i--)
         {
+            threadBCount = 1;
+            if (threadBCount == threadACount)
+            {
+                break;
+            }
             Thread.Sleep(100);
         }
     }
