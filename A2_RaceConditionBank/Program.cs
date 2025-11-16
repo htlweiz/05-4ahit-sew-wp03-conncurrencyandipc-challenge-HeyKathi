@@ -25,12 +25,11 @@ class Program
     
     private static void PerformBankOperations(BankAccount account)
     {
-        int amount = Convert.ToInt32(account);
-        account.Deposit(amount);
+        account.Deposit(100);
 
         Thread.Sleep(500);
 
-        account.Withdraw(amount);
+        account.Withdraw(150);
     }
 }
 

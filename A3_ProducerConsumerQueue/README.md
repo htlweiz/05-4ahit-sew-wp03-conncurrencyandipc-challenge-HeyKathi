@@ -7,4 +7,6 @@ Aufgabe:
        - im Konstruktor wird ein Thread gestartet welcher im Sekundentakt eine zufällige Zahl in die Queue hinzugefügt.
     - Erstellen Sie in der Main() 5 Producer. 
     - Beenden Sie das Programm wenn die Queue mehr als 50 Einträge hat!
-2. ...
+2. Conusmer
+Es gibt nur einen Consumer, der Werte aus der Queue liest
+Füllmenge der Queue ausgeben

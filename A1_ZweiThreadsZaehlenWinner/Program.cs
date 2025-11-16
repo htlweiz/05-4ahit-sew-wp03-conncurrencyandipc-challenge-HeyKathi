@@ -37,11 +37,11 @@ class Program
     
     private static void CountUpThreadA()
     {
-        for (int i = 1; i == 100; i++)
+        for (int i = 1; i <= 100; i++)
         {
-            threadACount = 1;
+            threadACount = i;
             Console.WriteLine("Thread A: " + threadACount);
-            if (threadBCount == threadACount)
+            if (threadACount == threadBCount)
             {
                 break;
             }
@@ -51,10 +51,10 @@ class Program
     
     private static void CountDownThreadB()
     {
-        for (int i = 100; i == 1; i--)
+        for (int i = 100; i >= 1; i--)
         {
-            threadBCount = 1;
-            Console.WriteLine("Thread B: " + threadACount);
+            threadBCount = i;
+            Console.WriteLine("Thread B: " + threadBCount);
             if (threadBCount == threadACount)
             {
                 break;

@@ -27,6 +27,7 @@ public class Producer
         while (!shouldStop)
         {
             int number = random.Next(1, 101); // Zufällige Zahl zwischen 1 und 100
+            Console.WriteLine($"Producer {producerId} | Erzeugt: {number,3} | Queue: {concurrentQueue.Count}");
             concurrentQueue.Enqueue(number);
            
             Thread.Sleep(1000); // 1 Sekunde Takt
@@ -36,5 +37,9 @@ public class Producer
     public void Stop()
     {
         shouldStop = true;
+    }
+    public void JoinThread()
+    {
+        producerThread.Join();
     }
 }

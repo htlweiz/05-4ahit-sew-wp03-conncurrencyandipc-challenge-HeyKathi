@@ -8,12 +8,12 @@ namespace A3_ProducerConsumerQueue;
 public class Consumer
 {
     private volatile bool shouldStop = false;
-    private Thread? consumerThread;
+    private Thread consumerThread;
     private int sum = 0;
 
     public Consumer(ConcurrentQueue<int> concurrentQueue)
     {
-        
+
         // Thread im Konstruktor starten
         consumerThread = new Thread(() => ConsumeNumbers(concurrentQueue));
         consumerThread.Start();
@@ -23,19 +23,24 @@ public class Consumer
     {
         while (!shouldStop)
         {
-            // TODO
-            foreach (int i in concurrentQueue)
+            if (concurrentQueue.TryDequeue(out int value))
             {
-                Console.WriteLine(i);
+                sum += value;
+                Console.WriteLine($"Consumer {value} | Summe: {sum}");
             }
 
-            Thread.Sleep(250); // 250ms Takt
+            Thread.Sleep(250);
         }
     }
 
     public void Stop()
     {
         shouldStop = true;
+    }
+
+    public void JoinThread()
+    {
+        consumerThread.Join();
     }
 
     public int GetSum()
