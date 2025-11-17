@@ -13,7 +13,6 @@ public class Consumer
 
     public Consumer(ConcurrentQueue<int> concurrentQueue)
     {
-
         // Thread im Konstruktor starten
         consumerThread = new Thread(() => ConsumeNumbers(concurrentQueue));
         consumerThread.Start();
